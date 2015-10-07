@@ -6,7 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class SpringBootDemoApplication {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
+        System.out.println("*** SpringBootDemoApplication ***");
         SpringApplication.run(SpringBootDemoApplication.class, args);
     }
 }

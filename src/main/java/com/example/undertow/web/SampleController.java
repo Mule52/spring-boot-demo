@@ -1,12 +1,17 @@
 package com.example.undertow.web;
 
+import java.util.List;
 import java.util.concurrent.Callable;
 
+import com.example.persistence.jpa.dao.ActorDao;
+import com.example.persistence.jpa.entity.ActorEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.undertow.service.HelloWorldService;
+
 
 @RestController
 public class SampleController {
@@ -14,8 +19,11 @@ public class SampleController {
     @Autowired
     private HelloWorldService helloWorldService;
 
+    @Autowired
+    private ActorDao actorDao;
+
     @RequestMapping("/")
-    public String helloWorld() {
+    public String defaultRequest() {
         return this.helloWorldService.getHelloMessage();
     }
 
@@ -30,7 +38,18 @@ public class SampleController {
             }
 
         };
+    }
 
+    @RequestMapping("/actor")
+    public String getActors() {
+        //ActorDao dao = new com.example.persistence.jpa.dao.ActorDao();
+        ActorEntity actor = new ActorEntity();
+        actor.setLastName("Mueller");
+        Iterable<ActorEntity> actors = actorDao.findAll();
+
+        Iterable<ActorEntity> xxx = actorDao.findByLastNameContaining("m");
+        //List<ActorEntity> actors = dao.getAll();
+        return "we should see actors here";
     }
 
 }
