@@ -176,3 +176,12 @@ div.au-stagger {
     opacity: 1;
   }
 }
+
+/*Overrides for aurelia-dialog*/
+ai-dialog-container {
+  z-index: 1050 !important;
+  background-color: rgba(0,0,0,0.5);
+}
+ai-dialog {
+  background-color: white;
+}
