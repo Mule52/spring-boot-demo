@@ -15,6 +15,7 @@ public class ActorEntity {
     private Timestamp lastUpdate;
 
     @Id
+    @GeneratedValue
     @Column(name = "actor_id")
     public short getActorId() {
         return actorId;
@@ -45,7 +46,7 @@ public class ActorEntity {
     }
 
     @Basic
-    @Column(name = "last_update")
+    @Column(name = "last_update", insertable = false, updatable = true)
     public Timestamp getLastUpdate() {
         return lastUpdate;
     }

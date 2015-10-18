@@ -19,6 +19,7 @@ public class PaymentEntity {
     private Timestamp lastUpdate;
 
     @Id
+    @GeneratedValue
     @Column(name = "payment_id")
     public short getPaymentId() {
         return paymentId;

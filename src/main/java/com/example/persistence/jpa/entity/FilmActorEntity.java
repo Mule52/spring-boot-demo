@@ -15,6 +15,7 @@ public class FilmActorEntity {
     private Timestamp lastUpdate;
 
     @Id
+    @GeneratedValue
     @Column(name = "actor_id")
     public short getActorId() {
         return actorId;

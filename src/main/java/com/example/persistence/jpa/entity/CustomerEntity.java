@@ -20,6 +20,7 @@ public class CustomerEntity {
     private Timestamp lastUpdate;
 
     @Id
+    @GeneratedValue
     @Column(name = "customer_id")
     public short getCustomerId() {
         return customerId;

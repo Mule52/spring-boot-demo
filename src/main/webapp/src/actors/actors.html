@@ -1,0 +1,48 @@
+<template>
+  <section>
+    <h2>${heading} <div style="font-size:initial;" class="pull-right"><a href="#/actors/0/detail">create new actor</a></div></h2>
+
+    <div class="container">
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th>ID</th>
+          <th>Firstname</th>
+          <th>Lastname</th>
+          <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr repeat.for="actor of actors">
+          <td>${actor.actorId}</td>
+          <td>${actor.firstName}</td>
+          <td>${actor.lastName}</td>
+          <td>
+            <a class="glyphicon glyphicon-remove pull-right" href="#" click.delegate="$parent.deleteActor(actor.actorId)"style="padding-left: 10px;"></a>
+            <a class="glyphicon glyphicon-edit pull-right" href="#/actors/${actor.actorId}/detail"></a>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+      <nav>
+        <ul class="pagination pull-right">
+          <li class="${currentPage==0 ? 'disabled' : ''}">
+            <a href="#" aria-label="Previous" click.delegate="goToPage(page-1)">
+              <span aria-hidden="true">&laquo;</span>
+            </a>
+          </li>
+          <li repeat.for="page of totalPages" class="${page==$parent.currentPage ? 'active' : ''}">
+            <a href="#" click.delegate="$parent.goToPage(page)">${page+1}</a>
+
+          </li>
+          <li class="${currentPage==totalPages-1 ? 'disabled' : ''}">
+            <a href="#" aria-label="Next" click.delegate="goToPage(page+1)">
+              <span aria-hidden="true">&raquo;</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+
+  </section>
+</template>

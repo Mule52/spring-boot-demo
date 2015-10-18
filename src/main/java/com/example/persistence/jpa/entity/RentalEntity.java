@@ -18,6 +18,7 @@ public class RentalEntity {
     private Timestamp lastUpdate;
 
     @Id
+    @GeneratedValue
     @Column(name = "rental_id")
     public int getRentalId() {
         return rentalId;

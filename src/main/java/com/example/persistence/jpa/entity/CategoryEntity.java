@@ -14,6 +14,7 @@ public class CategoryEntity {
     private Timestamp lastUpdate;
 
     @Id
+    @GeneratedValue
     @Column(name = "category_id")
     public byte getCategoryId() {
         return categoryId;

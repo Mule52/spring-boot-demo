@@ -15,6 +15,7 @@ public class StoreEntity {
     private Timestamp lastUpdate;
 
     @Id
+    @GeneratedValue
     @Column(name = "store_id")
     public byte getStoreId() {
         return storeId;

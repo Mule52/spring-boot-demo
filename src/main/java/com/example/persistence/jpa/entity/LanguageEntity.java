@@ -14,6 +14,7 @@ public class LanguageEntity {
     private Timestamp lastUpdate;
 
     @Id
+    @GeneratedValue
     @Column(name = "language_id")
     public byte getLanguageId() {
         return languageId;

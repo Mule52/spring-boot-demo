@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Aurelia</title>
+    <link rel="stylesheet" href="jspm_packages/npm/font-awesome@4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="styles/styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  </head>
+
+  <body aurelia-app="main">
+    <!--<div class="container" ></div>-->
+
+    <!--system.js, our ES6 standards-based module loader. It's what loads the Aurelia library as well as your own code.-->
+    <script src="jspm_packages/system.js"></script>
+
+    <!--config.js. This contains configuration for the loader. It's generated automatically whenever you execute a jspm command. jspm is the client-side package manager we recommend because it provides an amazing developer experience by integrating client-side package management with an ES6 compliant module loader.-->
+    <script src="config.js"></script>
+
+    <!--Once we have our module loader and its configuration, we load the aurelia-bootstrapper module with a call to System.import.-->
+    <!--When the bootstrapper loads it inspects the HTML document for aurelia-app attributes. In this case it will find that the body has an aurelia-app attribute. This tells the bootstrapper to load our app view-model and its view, conventionally located in welcome.js and welcome.html and then compose them as an Aurelia application in the DOM.-->
+    <script>
+      System.import('aurelia-bootstrapper');
+    </script>
+  </body>
+</html>

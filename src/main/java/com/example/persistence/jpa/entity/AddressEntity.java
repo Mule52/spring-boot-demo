@@ -19,6 +19,7 @@ public class AddressEntity {
     private Timestamp lastUpdate;
 
     @Id
+    @GeneratedValue
     @Column(name = "address_id")
     public short getAddressId() {
         return addressId;

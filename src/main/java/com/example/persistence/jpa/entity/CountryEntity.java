@@ -14,6 +14,7 @@ public class CountryEntity {
     private Timestamp lastUpdate;
 
     @Id
+    @GeneratedValue
     @Column(name = "country_id")
     public short getCountryId() {
         return countryId;

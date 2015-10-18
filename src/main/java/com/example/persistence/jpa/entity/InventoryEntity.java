@@ -15,6 +15,7 @@ public class InventoryEntity {
     private Timestamp lastUpdate;
 
     @Id
+    @GeneratedValue
     @Column(name = "inventory_id")
     public int getInventoryId() {
         return inventoryId;

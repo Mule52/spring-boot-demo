@@ -15,6 +15,7 @@ public class CityEntity {
     private Timestamp lastUpdate;
 
     @Id
+    @GeneratedValue
     @Column(name = "city_id")
     public short getCityId() {
         return cityId;

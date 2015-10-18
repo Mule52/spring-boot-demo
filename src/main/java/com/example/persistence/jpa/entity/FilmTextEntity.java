@@ -13,6 +13,7 @@ public class FilmTextEntity {
     private String description;
 
     @Id
+    @GeneratedValue
     @Column(name = "film_id")
     public short getFilmId() {
         return filmId;

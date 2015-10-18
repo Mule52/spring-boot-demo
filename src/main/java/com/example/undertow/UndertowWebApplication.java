@@ -8,10 +8,9 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EnableJpaRepositories("com.example.persistence.jpa.dao")
 @EntityScan("com.example.persistence.jpa.entity")
 @SpringBootApplication
-public class SampleUndertowApplication {
+public class UndertowWebApplication {
 
     public static void main(String[] args) throws Exception {
-        System.out.println("*** SampleUndertowApplication ***");
-        SpringApplication.run(SampleUndertowApplication.class, args);
+        SpringApplication.run(UndertowWebApplication.class, args);
     }
 }

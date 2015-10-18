@@ -23,6 +23,7 @@ public class StaffEntity {
     private Timestamp lastUpdate;
 
     @Id
+    @GeneratedValue
     @Column(name = "staff_id")
     public byte getStaffId() {
         return staffId;
