@@ -1,7 +1,9 @@
 import {inject} from 'aurelia-framework';
 import $ from 'jquery';
+import {DialogService} from 'aurelia-dialog';
+import {EditPerson} from './modal-body-example';
 
-@inject(Element)
+@inject(Element, DialogService)
 export class Welcome {
   heading = 'Welcome to the Aurelia Navigation App!';
   firstName = 'John';
@@ -9,8 +11,9 @@ export class Welcome {
 
   title = 'My Modal';
 
-  constructor(element) {
+  constructor(element, dialogService) {
     this.element = element;
+    this.dialogService = dialogService;
   }
 
   get fullName() {
@@ -23,7 +26,17 @@ export class Welcome {
 
   openModal(){
     console.log("openModal called");
-    $(this.element).find('.modal').modal();
+    //$(this.element).find('.modal').modal();
+
+    this.dialogService.open({ viewModel: EditPerson, model: {firstName: 'alex', lastName: 'mueller'}}).then(response => {
+      if (!response.wasCancelled) {
+        console.log('good');
+      } else {
+        console.log('bad');
+      }
+      console.log(response.output);
+    });
+
   }
 
   onCancelClick(){

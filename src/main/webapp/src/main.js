@@ -1,12 +1,7 @@
-import 'bootstrap';
+//import 'bootstrap';
+import 'github:twbs/bootstrap@3.3.5';
 
 export function configure(aurelia) {
-
-  //aurelia.globalResources('./modal');
-  //aurelia.globalResources('./modal-header');
-  //aurelia.globalResources('./modal-body');
-  //aurelia.globalResources('./modal-footer');
-  //aurelia.globalResources('./au-button');
 
   // see http://aurelia.io/docs.html#startup-and-configuration
   aurelia.use
@@ -16,4 +11,3 @@ export function configure(aurelia) {
 
   aurelia.start().then(a => a.setRoot());
 }
-g

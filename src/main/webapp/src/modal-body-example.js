@@ -1,10 +1,14 @@
-export class PersonInformation {
-  constructor(person) {
-    this.person = new Person();
-  }
-}
+import {DialogController} from 'aurelia-dialog';
 
-class Person{
-  firstName = 'Patrick';
-  lastName = 'Patrick';
+export class EditPerson {
+  static inject = [DialogController];
+  person = { firstName: '' };
+
+  constructor(controller){
+    this.controller = controller;
+  }
+
+  activate(person){
+    this.person = person;
+  }
 }
