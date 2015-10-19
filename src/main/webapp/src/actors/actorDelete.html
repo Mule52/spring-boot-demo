@@ -1,0 +1,16 @@
+<template>
+  <ai-dialog>
+    <ai-dialog-header>
+      Delete Actor
+    </ai-dialog-header>
+
+    <ai-dialog-body>
+      Are you sure you want to delete ${actor.firstName} ${actor.lastName}?
+    </ai-dialog-body>
+
+    <ai-dialog-footer>
+      <button click.trigger="controller.cancel()">Cancel</button>
+      <button class="btn-primary" click.trigger="controller.ok(actor)">Delete</button>
+    </ai-dialog-footer>
+  </ai-dialog>
+</template>

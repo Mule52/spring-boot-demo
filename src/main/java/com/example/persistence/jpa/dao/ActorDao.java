@@ -13,4 +13,6 @@ public interface ActorDao extends CrudRepository<ActorEntity, Short>, PagingAndS
 
     // http://docs.spring.io/spring-data/data-jpa/docs/current/reference/html/#jpa.query-methods.query-creation
     public Iterable<ActorEntity> findByLastNameContaining(String lastName);
+
+    public Short deleteByActorId(Short id); // use query derivation for delete/remove
 }

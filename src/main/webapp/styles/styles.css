@@ -179,9 +179,9 @@ div.au-stagger {
 
 /*Overrides for aurelia-dialog*/
 ai-dialog-container {
-  z-index: 1050 !important;
-  background-color: rgba(0,0,0,0.5);
+  z-index: 1050 !important; /* overlay over default nav-bar */
+  background-color: rgba(0,0,0,0.5); /* overlay grey background */
 }
 ai-dialog {
-  background-color: white;
+  background-color: white; /* overlay white background over dialog only */
 }

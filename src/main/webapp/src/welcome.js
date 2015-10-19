@@ -38,12 +38,4 @@ export class Welcome {
     });
 
   }
-
-  onCancelClick(){
-    console.log("onCancelClick called");
-  }
-
-  onOkClick(){
-    console.log("onOkClick called");
-  }
 }

@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-
 @RestController
 public class ActorController {
 
@@ -42,12 +41,6 @@ public class ActorController {
         return () -> actorDao.findOne(id);
     }
 
-//    @RequestMapping(value="/actor/{id}", method= RequestMethod.POST)
-//    public  Callable<ActorEntity> saveActorAsync(@ModelAttribute("actorEntity") ActorEntity actorEntity,
-//                                                 BindingResult result, RedirectAttributes redirect, ModelAndView model) {
-//        return () -> actorDao.save(id);
-//    }
-
     @RequestMapping(value="/actor", method=RequestMethod.PUT)
     public @ResponseBody ActorEntity updateActorAsync(@RequestBody ActorEntity actorEntity) {
         actorEntity.setLastUpdate(timeService.getCurrentTimestamp());
@@ -58,5 +51,10 @@ public class ActorController {
     public @ResponseBody ActorEntity createActorAsync(@RequestBody ActorEntity actorEntity) {
         actorEntity.setLastUpdate(timeService.getCurrentTimestamp());
         return actorDao.save(actorEntity);
+    }
+
+    @RequestMapping(value="/actor/{id}", method= RequestMethod.DELETE)
+    public @ResponseBody Callable<Short> deleteActorByIdAsync(@PathVariable Short id) {
+        return () -> actorDao.deleteByActorId(id);
     }
 }

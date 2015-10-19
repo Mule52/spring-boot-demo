@@ -39,8 +39,7 @@ export class ActorApi {
     return this.http.get('/actor/' + page + '/' + count);
   }
 
-  getActor(id)
-  {
+  getActor(id){
     return this.http.get('/actor/' + id);
   }
 
@@ -51,6 +50,10 @@ export class ActorApi {
     else {
       return this.http.post('/actor', JSON.stringify(actor));
     }
+  }
+
+  deleteActor(id){
+    return this.http.delete('/actor/' + id);
   }
 }
 
