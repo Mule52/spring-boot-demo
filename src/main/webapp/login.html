@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <script src="jspm_packages/github/components/jquery@2.1.4/jquery.js"></script>
+
+</head>
+<body>
+  <form id="loginForm" role="form" action="/login" method="post">
+    <!--<input id="hiddenCsrf" type="hidden" name="X-CSRF-TOKEN"/>-->
+    <div>
+      <label for="username">Email address</label>
+      <input type="text" name="username" id="username" required autofocus>
+    </div>
+    <div>
+      <label for="password">Password</label>
+      <input type="password" name="password" id="password" required>
+    </div>
+    <div>
+      <label for="remember-me">Remember me</label>
+      <input type="checkbox" name="remember-me" id="remember-me">
+    </div>
+    <button type="submit">Sign in</button>
+  </form>
+
+  <script>
+    $(document).ready(function(){
+
+      $('#loginForm').on('submit', function(e){
+        e.preventDefault();
+
+        $.ajax({
+          type: 'GET',
+          url: '/api/csrf'
+
+        }).done(function (data, textStatus, xhr) {
+          var token = xhr.getResponseHeader('X-CSRF-TOKEN');
+          console.log("response from /api/csrf/ = " + token);
+//          $("#hiddenCsrf").val(csrfToken);
+
+          var loginForm = $('#loginForm').get(0);
+
+          var csrf = $('<input/>', {
+            type: 'hidden',
+            name: xhr.getResponseHeader('X-CSRF-PARAM'),
+            value: token
+          });
+
+          $(loginForm).append(csrf);
+          loginForm.submit();
+
+        }).fail(function (jqXHR, textStatus, errorThrown) {
+          console.log("/api/csrf request failed = " + errorThrown);
+        });
+      });
+    });
+
+  </script>
+</body>
+</html>

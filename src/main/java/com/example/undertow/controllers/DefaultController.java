@@ -1,6 +1,6 @@
-package com.example.undertow.web;
+package com.example.undertow.controllers;
 
-import com.example.undertow.service.DateTimeService;
+import com.example.undertow.services.DateTimeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,11 +14,11 @@ public class DefaultController {
     private DateTimeService timeService;
 
     // Default mapping, load our client framework via the index.html
-    @RequestMapping("/")
-    public String index() {
-        System.out.println("/ index called");
-        return "index.html";
-    }
+//    @RequestMapping("/")
+//    public String index() {
+//        System.out.println("/ index called");
+//        return "index";
+//    }
 
     // Simple async example - here for reference
     @RequestMapping("/async")
@@ -33,5 +33,4 @@ public class DefaultController {
 
         };
     }
-
 }

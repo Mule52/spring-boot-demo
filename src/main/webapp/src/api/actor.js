@@ -28,32 +28,32 @@ export class ActorApi {
 
   getActors(){
     log('actor.js getActors() called');
-    return this.http.get('/actor');
+    return this.http.get('/api/actor');
   }
 
   getActors(page, count){
     if (page == undefined || count == undefined) {
-      return this.http.get('/actor');
+      return this.http.get('/api/actor');
     }
     log('actor.js getActors(page, count) called');
-    return this.http.get('/actor/' + page + '/' + count);
+    return this.http.get('/api/actor/' + page + '/' + count);
   }
 
   getActor(id){
-    return this.http.get('/actor/' + id);
+    return this.http.get('/api/actor/' + id);
   }
 
   save(actor){
     if (actor.actorId) {
-      return this.http.put('/actor', JSON.stringify(actor));
+      return this.http.put('/api/actor', JSON.stringify(actor));
     }
     else {
-      return this.http.post('/actor', JSON.stringify(actor));
+      return this.http.post('/api/actor', JSON.stringify(actor));
     }
   }
 
   deleteActor(id){
-    return this.http.delete('/actor/' + id);
+    return this.http.delete('/api/actor/' + id);
   }
 }
 

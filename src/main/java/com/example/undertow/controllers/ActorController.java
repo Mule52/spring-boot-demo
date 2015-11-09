@@ -1,18 +1,16 @@
-package com.example.undertow.web;
+package com.example.undertow.controllers;
 
 import java.util.concurrent.Callable;
+
 import com.example.persistence.jpa.dao.ActorDao;
-import com.example.persistence.jpa.entity.ActorEntity;
-import com.example.undertow.service.DateTimeService;
+import com.example.persistence.jpa.entity.Actor;
+import com.example.undertow.services.DateTimeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @RestController
+@RequestMapping("/api")
 public class ActorController {
 
     @Autowired
@@ -26,35 +24,35 @@ public class ActorController {
     // using one of Spring’s message converters. This is helpful to turn objects into JSON output.
 
     @RequestMapping(value="/actor", method= RequestMethod.GET)
-    public @ResponseBody Iterable<ActorEntity> getActors() {
+    public @ResponseBody Iterable<Actor> getActors() {
         return actorDao.findAll();
     }
 
     @RequestMapping(value="/actor/{page}/{size}", method= RequestMethod.GET)
-    public @ResponseBody Iterable<ActorEntity> getActors(@PathVariable Short page, @PathVariable Short size) {
+    public @ResponseBody Iterable<Actor> getActors(@PathVariable Short page, @PathVariable Short size) {
         return actorDao.findAll(new PageRequest(page, size));
         // http://docs.spring.io/spring-data/data-commons/docs/1.6.1.RELEASE/reference/html/repositories.html
     }
 
     @RequestMapping(value="/actor/{id}", method= RequestMethod.GET)
-    public @ResponseBody Callable<ActorEntity> getActorByIdAsync(@PathVariable Short id) {
+    public @ResponseBody Callable<Actor> getActorByIdAsync(@PathVariable Integer id) {
         return () -> actorDao.findOne(id);
     }
 
     @RequestMapping(value="/actor", method=RequestMethod.PUT)
-    public @ResponseBody ActorEntity updateActorAsync(@RequestBody ActorEntity actorEntity) {
-        actorEntity.setLastUpdate(timeService.getCurrentTimestamp());
-        return actorDao.save(actorEntity);
+    public @ResponseBody Actor updateActorAsync(@RequestBody Actor Actor) {
+        Actor.setLastUpdate(timeService.getCurrentTimestamp());
+        return actorDao.save(Actor);
     }
 
     @RequestMapping(value="/actor", method=RequestMethod.POST)
-    public @ResponseBody ActorEntity createActorAsync(@RequestBody ActorEntity actorEntity) {
-        actorEntity.setLastUpdate(timeService.getCurrentTimestamp());
-        return actorDao.save(actorEntity);
+    public @ResponseBody Actor createActorAsync(@RequestBody Actor Actor) {
+        Actor.setLastUpdate(timeService.getCurrentTimestamp());
+        return actorDao.save(Actor);
     }
 
     @RequestMapping(value="/actor/{id}", method= RequestMethod.DELETE)
-    public @ResponseBody Callable<Short> deleteActorByIdAsync(@PathVariable Short id) {
+    public @ResponseBody Callable<Integer> deleteActorByIdAsync(@PathVariable Integer id) {
         return () -> actorDao.deleteByActorId(id);
     }
 }

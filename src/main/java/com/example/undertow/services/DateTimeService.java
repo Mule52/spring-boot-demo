@@ -1,4 +1,4 @@
-package com.example.undertow.service;
+package com.example.undertow.services;
 
 import org.springframework.stereotype.Component;
 

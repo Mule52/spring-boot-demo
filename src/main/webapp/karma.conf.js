@@ -54,7 +54,7 @@ module.exports = function(config) {
     reporters: ['progress'],
 
 
-    // web server port
+    // controllers server port
     port: 9876,
 
 
