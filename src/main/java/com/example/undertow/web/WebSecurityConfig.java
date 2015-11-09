@@ -6,7 +6,9 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.csrf.CsrfFilter;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import javax.sql.DataSource;
 
@@ -40,16 +42,21 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
             .authorizeRequests()
 //                .antMatchers("/", "/home", "/actor/**", "/api/csrf").permitAll()
-            .antMatchers("/", "/home", "/api/**").permitAll()  // should we expose all api end points?
-            .anyRequest().authenticated()
-            .and()
+                .antMatchers("/", "/home", "/api/**").permitAll()  // should we expose all api end points?
+                .antMatchers("/logout","/login").permitAll()
+                .antMatchers("/admin").hasRole("ADMIN")
+                .anyRequest().authenticated()
+
+                .and()
             .formLogin()
-            .loginPage("/login")
-            .failureUrl("/login?error")
-            .permitAll()
-            .and()
+                .loginPage("/login")
+                .failureUrl("/login?error")
+                .permitAll()
+                .and()
             .logout()
-            .permitAll();
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .logoutSuccessUrl("/home")
+                .permitAll();
     }
 
     @Autowired
@@ -59,6 +66,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .usersByUsernameQuery(
                 "select username, password, enabled from users where username=?")
             .authoritiesByUsernameQuery(
-                "select username, role from user_roles where username=?");
+                "select username, role from user_roles where username=?")
+            .passwordEncoder(new BCryptPasswordEncoder());
     }
 }
