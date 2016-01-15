@@ -25,28 +25,23 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         // Add CSRF token to header
         http.addFilterAfter(new CsrfTokenGeneratorFilter(), CsrfFilter.class);
 
-        // Permit files in the webapp root that are not in js/styles directories.
-        // Permit directories in webapp.
-        http
-            .authorizeRequests()
-            .antMatchers(
-                "/favicon.ico",
-                "/config.js",
-                "/aurelia-bootstrapper",
-                "/dist/**",
-                "/jspm_packages/**",
-                "/styles/**"
-            )
-            .permitAll();
-
         http
             .authorizeRequests()
 //                .antMatchers("/", "/home", "/actor/**", "/api/csrf").permitAll()
-                .antMatchers("/", "/home", "/api/**").permitAll()  // should we expose all api end points?
-                .antMatchers("/logout","/login").permitAll()
+                .antMatchers(
+                    "/favicon.ico", "/config.js",
+                    "/aurelia-bootstrapper",
+                    "/dist/**",
+                    "/jspm_packages/**",
+                    "/styles/**",
+                    "/",
+                    "/home/**",
+                    "/api/**",
+                    "/logout",
+                    "/login"
+                ).permitAll()
                 .antMatchers("/admin").hasRole("ADMIN")
                 .anyRequest().authenticated()
-
                 .and()
             .formLogin()
                 .loginPage("/login")
@@ -56,7 +51,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .logoutSuccessUrl("/home")
-                .permitAll();
+                .permitAll()
+                .and()
+            .exceptionHandling()
+                .accessDeniedPage("/403");
     }
 
     @Autowired
